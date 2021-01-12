@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+<form autocomplete="off">
+    姓名：<input type="text" id="username">
+    <span id="uSpan"></span>
+    <br>
+    密码：<input type="password" id="password">
+    <br>
+    <input type="submit" value="注册">
+</form>
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<!--
+    TODO JQuery的POST方式实现AJAX
+-->
+<script>
+    /**
+     * $.post(url,[data],[callback],[type]);
+     * url：请求的资源路径。
+     * data：发送给服务器端的请求参数，格式可以是key=value，也可以是 js 对象。
+     * callback：当请求成功后的回调函数，可以在函数中编写我们的逻辑代码。
+     * type：预期的返回数据的类型，取值可以是 xml, html, js, json, text等。
+     */
+    // 1.为用户名绑定失去焦点事件
+    $("#username").blur(function () {
+        let username = $("#username").val();
+        // 2.jQuery的POST方式实现Ajax
+        $.post(
+            // 请求的资源路径
+            "userServlet",
+            // 请求参数
+            "username=" + username,
+            // 回调函数
+            function (data) {
+                // 将响应的数据显示到span标签上
+                $("#uSpan").html(data);
+            },
+            // 响应数据格式
+            "text"
+        );
+    });
+
+</script>
+</html>

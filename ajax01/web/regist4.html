@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+<form autocomplete="off">
+    姓名：<input type="text" id="username">
+    <span id="uSpan"></span>
+    <br>
+    密码：<input type="password" id="password">
+    <br>
+    <input type="submit" value="注册">
+</form>
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<!--
+    TODO JQuery的通用方式实现AJAX
+-->
+<script>
+    /**
+     * $.ajax({name:value,name:value,…});
+     * - url：请求的资源路径。
+     * - async：是否异步请求，true-是，false-否 (默认是 true)。
+     * - data：发送到服务器的数据，可以是键值对形式，也可以是 js 对象形式。
+     * - type：请求方式，POST 或 GET (默认是 GET)。
+     * - dataType：预期的返回数据的类型，取值可以是 xml, html, js, json, text等。
+     * - success：请求成功时调用的回调函数。
+     * - error：请求失败时调用的回调函数。
+     */
+    // 1.为用户名绑定失去焦点事件
+    $("#username").blur(function () {
+        let username = $("#username").val();
+        // 2.jQuery的通用方式实现Ajax
+        $.ajax({
+            // 请求的资源路径
+            url: "userServlet",
+            // 是否异步
+            async: true,
+            // 请求参数
+            data: "username=" + username,
+            // 请求方式
+            type: "POST",
+            // 返回数据的类型
+            dataType: "text",
+            // 请求成功后调用的回调函数
+            success: function (data) {
+                // 将响应的数据显示到span标签
+                $("#uSpan").html(data);
+            },
+            // 请求失败后调用的回调函数
+            error: function () {
+                alert("操作失败...")
+            }
+        });
+    });
+
+</script>
+</html>

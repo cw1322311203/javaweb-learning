@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+<form autocomplete="off">
+    姓名：<input type="text" id="username">
+    <span id="uSpan"></span>
+    <br>
+    密码：<input type="password" id="password">
+    <br>
+    <input type="submit" value="注册">
+</form>
+</body>
+<!--
+    TODO 原生JS实现AJAX
+-->
+<script>
+    //1.为姓名绑定失去焦点事件
+    document.getElementById("username").onblur = function () {
+        //2.创建XMLHttpRequest核心对象
+        // 核心对象：XMLHttpRequest：用于在后台与服务器交换数据。可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+        let xmlHttp = new XMLHttpRequest();
+
+        //3.打开链接
+        let username = document.getElementById("username").value;
+        /**
+         * 同步:客户端必须等待服务器端的响应。在等待的期间客户端不能做其他操作
+         * 异步:客户端不需要等待服务器端的响应。在服务器处理请求的过程种，客户端可以进行其他操作
+         *
+         * open(method,url,async)
+         * - method:请求的类型，GET或POST
+         * - url:文件在服务器上的位置
+         * - async:true(异步) false(同步)
+         */
+        xmlHttp.open("GET", "userServlet?username=" + username, true);// true异步
+        //xmlHttp.open("GET", "userServlet?username=" + username, false);// false同步:处理请求时会禁止其他操作进行
+
+        //4.发送请求
+        /**
+         * send():将请求发送到服务器
+         * send(String params): params:请求的参数(POST请求专用)。
+         * 使用方法
+         * xmlHttp.open("POST", "userServlet", true);
+         * xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+         * xmlHttp.send("username="+username);
+         */
+        xmlHttp.send();
+
+        //5.处理响应
+        /**
+         * 处理响应：onreadystatechange
+         * readyState：0-请求未初始化，1-服务器连接已建立，2-请求已接收，3-请求处理中，4-请求已完成，且响应已就绪。
+         * status：200-响应已全部 OK。
+         */
+        xmlHttp.onreadystatechange = function () {
+            //判断请求和响应是否成功
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                //将响应的数据显示到span标签
+                /**
+                 * responseText:获得字符串形式的响应数据
+                 * responseXML:获取XML形式的响应数据
+                 */
+                document.getElementById("uSpan").innerHTML = xmlHttp.responseText;
+            }
+        }
+    }
+</script>
+</html>
