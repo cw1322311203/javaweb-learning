@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自定义组件</title>
+		<!-- 
+			本质上，组件是带有一个名字且可复用的 Vue 实例，我们完全可以自己定义。
+			Vue.component(组件名称, {
+			 props:组件的属性,
+			 data: 组件的数据函数,
+			 template: 组件解析的标签模板
+			})
+		 -->
+		<script src="vue/vue.js"></script>
+	</head>
+	<body>
+		<div id="div">
+			<my-button>我的按钮</my-button>
+		</div>
+	</body>
+	<script>
+		Vue.component("my-button", {
+			// 属性
+			props: ["style"],
+			// 数据函数
+			data: function() {
+				return {
+					msg: "我的按钮"
+				}
+			},
+			// 解析标签模板
+			template: "<button style='color: red;'>{{msg}}</button>"
+		});
+		
+		new Vue({
+			el: "#div"
+		});
+	</script>
+</html>

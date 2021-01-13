@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件绑定</title>
+		<!-- 
+			v-on：为 HTML 标签绑定事件。
+		 -->
+	</head>
+	<body>
+		<div id="div">
+			<div>{{name}}</div>
+			<button v-on:click="change()">改变div的内容</button>
+			<button v-on:dblclick="change()">改变div的内容</button>
+			<button v-on:mouseenter="change()" v-on:mouseleave="change()">改变div的内容</button>
+			
+			<button @click="change()">改变div的内容</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#div",
+			data: {
+				name: "张三"
+			},
+			methods: {
+				change() {
+					if (this.name == "张三") {
+						this.name = "李四";
+					} else {
+						this.name = "张三"
+					}
+				}
+			}
+		});
+	</script>
+</html>

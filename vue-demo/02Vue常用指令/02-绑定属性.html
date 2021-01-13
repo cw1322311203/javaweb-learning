@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>绑定属性</title>
+		<!-- v-bind：为 HTML 标签绑定属性值。 -->
+		<style>
+			.my {
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<a v-bind:href="url">百度一下</a>
+			<br>
+			<a :href="url">百度一下</a>
+			<br>
+			<div :class="cls">我是div</div>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#div",
+			data: {
+				url: "https://www.baidu.com",
+				cls: "my"
+			}
+		});
+	</script>
+</html>

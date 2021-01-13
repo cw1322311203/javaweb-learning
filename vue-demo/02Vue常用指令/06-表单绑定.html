@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单绑定</title>
+		<!-- 
+			v-model：在表单元素上创建双向数据绑定。
+			
+			双向数据绑定：
+			1.更新data数据，页面中的数据也会更新。
+			2.更新页面数据，data数据也会更新。
+			
+			MVVM模型(ModelViewViewModel)：是MVC模式的改进版
+			在前端页面中，JS对象表示Model，页面表示View，两者做到了最大限度的分离。
+			将Model和View关联起来的就是ViewModel，它是桥梁。
+			ViewModel负责把Model的数据同步到View显示出来，还负责把View修改的数据同步回Model。
+		 -->
+	</head>
+	<body>
+		<div id="div">
+			<form autocomplete="off">
+				姓名:<input type="text" name="username" v-model="username">
+				<br>
+				年龄:<input type="number" name="age" v-model="age">
+			</form>
+			<hr>
+			<div>{{username}}</div>
+			<div>{{age}}</div>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#div",
+			data: {
+				username: "张三",
+				age: 23
+			}
+		});
+	</script>
+</html>

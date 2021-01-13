@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>快速入门</title>
+	</head>
+	<body>
+		<!-- Vue的程序包含视图和脚本两个核心部分。 -->
+		<!-- 视图 -->
+		<!-- 在视图部分获取脚本部分的数据。{{变量名}} -->
+		<div id="div">
+			{{msg}}
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		// 脚本
+		/**
+		 * 每一个 Vue 程序都是从一个 Vue 核心对象开始的。
+		 * let vm = new Vue({
+		 *  选项列表;
+		 * });
+		 * 选项列表
+		 * el选项：用于接收获取到页面中的元素。(根据常用选择器获取)。
+		 * data选项：用于保存当前Vue对象中的数据。在视图中声明的变量需要在此处赋值。
+		 * methods选项：用于定义方法。方法可以直接通过对象名调用，this代表当前Vue对象。
+		 */
+		new Vue({
+			el: "#div",
+			data: {
+				msg: "Hello Vue"
+			}
+		});
+	</script>
+</html>

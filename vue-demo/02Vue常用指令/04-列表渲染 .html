@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>列表渲染</title>
+		<!-- 
+			v-for：列表渲染，遍历容器的元素或者对象的属性。
+		 -->
+	</head>
+	<body>
+		<div id="div">
+			<ul>
+				<li v-for="name in names">
+					{{name}}
+				</li>
+				<li v-for="value in student">
+					{{value}}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#div",
+			data: {
+				names: ["张三", "李四", "王五"],
+				student:{
+					name:"张三",
+					age:23
+				}
+			}
+		});
+	</script>
+</html>

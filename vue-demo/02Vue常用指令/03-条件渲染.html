@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>条件渲染</title>
+		<!-- 
+			v-if：条件性的渲染某元素，判定为真时渲染,否则不渲染。
+			v-else：条件性的渲染。
+			v-else-if：条件性的渲染。
+			v-show：根据条件展示某元素，区别在于切换的是display属性的值。
+		 -->
+	</head>
+	<body>
+		<div id="div">
+			<!-- 判断num的值，对3取余  余数为0显示div1  余数为1显示div2  余数为2显示div3 -->
+			<div v-if="num % 3 == 0">div1</div>
+			<div v-else-if="num % 3 == 1">div2</div>
+			<div v-else="num % 3 == 2">div3</div>
+
+			<div v-show="flag">div4</div>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: "#div",
+			data: {
+				num: 1,
+				flag: false
+			}
+		});
+	</script>
+</html>
